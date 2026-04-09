@@ -118,6 +118,6 @@ def remove_participant(activity_name: str, email: str):
         raise HTTPException(status_code=404, detail="Activity not found")
     activity = activities[activity_name]
     if email not in activity["participants"]:
-        raise HTTPException(status_code=404, detail="Participant not found in this activity")
+        raise HTTPException(status_code=400, detail="Student is not signed up")
     activity["participants"].remove(email)
     return {"message": f"Removed {email} from {activity_name}"}
